@@ -11,6 +11,7 @@ export function Request (defaults) {
   if (!isStandardBrowserEnv) {
     defaults.headers['user-agent'] = defaults.headers['user-agent'] || 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36'
     defaults.headers['connection'] = defaults.headers['connection'] || 'close'
+    defaults.headers['mmweb_appid'] = defaults.headers['mmweb_appid'] || 'wx_webfilehelper'
   }
 
   defaults.timeout = 1000 * 60
