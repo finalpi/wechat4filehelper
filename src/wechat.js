@@ -145,7 +145,7 @@ class Wechat extends WechatCore {
         // this.getContact() 这个接口返回通讯录中的联系人（包括已保存的群聊）
         // 临时的群聊会话在初始化的接口中可以获取，因此这里也需要更新一遍 contacts
         // 否则后面可能会拿不到某个临时群聊的信息
-        // this.updateContacts(data.ContactList)
+        this.updateContacts(data.ContactList)
 
         // this.notifyMobile()
         //   .catch(err => this.emit('error', err))
@@ -220,7 +220,9 @@ class Wechat extends WechatCore {
             setTimeout(resolve, 60 * 1000)
           }).then(() => this.init())
             .then(data => {
-              this.updateContacts(data.ContactList)
+              if (data) {
+                this.updateContacts(data.ContactList)
+              }
             })
         }
       }).catch(err => {

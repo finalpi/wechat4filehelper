@@ -186,9 +186,6 @@ export default class WechatCore {
         params: params,
         data: data
       }).then(res => {
-        console.log('params:', params)
-        console.log('data:', this.getBaseRequest())
-        console.log('url:', this.CONF.API_webwxinit)
         let data = res.data
         if (data.BaseResponse.Ret === this.CONF.SYNCCHECK_RET_LOGOUT) {
           throw new AlreadyLogoutError()
@@ -1062,7 +1059,6 @@ export default class WechatCore {
         params: params,
         responseType: 'arraybuffer'
       }).then(res => {
-        console.log(this.CONF.API_webwxdownloadmedia)
         return {
           data: res.data,
           type: res.headers['content-type']
