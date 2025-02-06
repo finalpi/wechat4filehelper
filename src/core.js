@@ -200,7 +200,7 @@ export default class WechatCore {
       debug(err)
       err.tips = '微信初始化失败'
       this.CONF = getCONF(undefined, 'https://szfilehelper.weixin.qq.com')
-      this.login()
+      return this.init()
     })
   }
 
