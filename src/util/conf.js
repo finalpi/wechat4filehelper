@@ -193,7 +193,7 @@ export function getCONF (host) {
   conf.API_jsLogin = 'https://' + loginUrl + '/jslogin?appid=wx_webfilehelper&fun=new&lang=zh-CN&redirect_uri=https%253A%252F%252Ffilehelper.weixin.qq.com%252Fcgi-bin%252Fmmwebwx-bin%252Fwebwxnewloginpage'
   conf.API_login = 'https://' + loginUrl + '/cgi-bin/mmwebwx-bin/login'
   conf.API_synccheck = 'https://' + pushUrl + '/cgi-bin/mmwebwx-bin/synccheck'
-  conf.API_webwxdownloadmedia = 'https://' + fileUrl + '/cgi-bin/mmwebwx-bin/webwxgetmedia'
+  conf.API_webwxdownloadmedia = origin + '/cgi-bin/mmwebwx-bin/webwxgetmedia'
   conf.API_webwxuploadmedia = 'https://' + fileUrl + '/cgi-bin/mmwebwx-bin/webwxuploadmedia'
   conf.API_webwxpreview = origin + '/cgi-bin/mmwebwx-bin/webwxpreview'
   conf.API_webwxinit = origin + '/cgi-bin/mmwebwx-bin/webwxinit'

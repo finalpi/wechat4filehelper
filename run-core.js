@@ -171,14 +171,6 @@ bot.on('login', () => {
  */
 bot.on('message', msg => {
   /**
-   * 获取消息时间
-   */
-  console.log(`----------${msg.getDisplayTime()}----------`)
-  /**
-   * 获取消息发送者的显示名
-   */
-  console.log(bot.contacts[msg.FromUserName].getDisplayName())
-  /**
    * 判断消息类型
    */
   switch (msg.MsgType) {
