@@ -202,7 +202,8 @@ export default class WechatCore {
     }).catch(err => {
       debug(err)
       err.tips = '微信初始化失败'
-      throw err
+      this.CONF = getCONF(undefined, 'https://szfilehelper.weixin.qq.com')
+      this.login()
     })
   }
 
@@ -1061,6 +1062,7 @@ export default class WechatCore {
         params: params,
         responseType: 'arraybuffer'
       }).then(res => {
+        console.log(this.CONF.API_webwxdownloadmedia)
         return {
           data: res.data,
           type: res.headers['content-type']

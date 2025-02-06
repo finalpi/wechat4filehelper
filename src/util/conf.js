@@ -168,33 +168,35 @@ export const CONF = {
   ]
 }
 
-export function getCONF (host) {
+export function getCONF (host, originUrl) {
   host = host || 'wx.qq.com'
   let origin = 'https://filehelper.weixin.qq.com'
+  if (originUrl) {
+    origin = originUrl
+  }
   let loginUrl = 'login.wx.qq.com'
-  let fileUrl = 'file.wx.qq.com'
-  let pushUrl = 'webpush.weixin.qq.com'
-  let matchResult = host.match(/(\w+)(.qq.com|.wechat.com)/)
-  if (matchResult && matchResult[1] && matchResult[2]) {
-    let prefix = matchResult[1]
-    let suffix = matchResult[2]
-    if (suffix === '.qq.com') {
-      prefix = ~['wx', 'wx2', 'wx8'].indexOf(prefix) ? prefix : 'wx'
-    } else {
-      prefix = ~['web', 'web2'].indexOf(prefix) ? prefix : 'web'
+  let matchResult
+  if (host) {
+    matchResult = host.match(/(\w+)(.qq.com|.wechat.com)/)
+    if (matchResult && matchResult[1] && matchResult[2]) {
+      let prefix = matchResult[1]
+      let suffix = matchResult[2]
+      if (suffix === '.qq.com') {
+        prefix = ~['wx', 'wx2', 'wx8'].indexOf(prefix) ? prefix : 'wx'
+      } else {
+        prefix = ~['web', 'web2'].indexOf(prefix) ? prefix : 'web'
+      }
+      loginUrl = `login.${prefix}${suffix}`
     }
-    loginUrl = `login.${prefix}${suffix}`
-    fileUrl = `file.${prefix}${suffix}`
-    pushUrl = `webpush.${prefix}${suffix}`
   }
   let conf = {}
   conf.origin = origin
   conf.baseUri = origin + '/cgi-bin/mmwebwx-bin'
   conf.API_jsLogin = 'https://' + loginUrl + '/jslogin?appid=wx_webfilehelper&fun=new&lang=zh-CN&redirect_uri=https%253A%252F%252Ffilehelper.weixin.qq.com%252Fcgi-bin%252Fmmwebwx-bin%252Fwebwxnewloginpage'
   conf.API_login = 'https://' + loginUrl + '/cgi-bin/mmwebwx-bin/login'
-  conf.API_synccheck = 'https://' + pushUrl + '/cgi-bin/mmwebwx-bin/synccheck'
-  conf.API_webwxdownloadmedia = origin + '/cgi-bin/mmwebwx-bin/webwxgetmedia'
-  conf.API_webwxuploadmedia = 'https://' + fileUrl + '/cgi-bin/mmwebwx-bin/webwxuploadmedia'
+  conf.API_synccheck = origin + '/cgi-bin/mmwebwx-bin/synccheck'
+  conf.API_webwxdownloadmedia = 'https://filehelper.weixin.qq.com' + '/cgi-bin/mmwebwx-bin/webwxgetmedia'
+  conf.API_webwxuploadmedia = origin + '/cgi-bin/mmwebwx-bin/webwxuploadmedia'
   conf.API_webwxpreview = origin + '/cgi-bin/mmwebwx-bin/webwxpreview'
   conf.API_webwxinit = origin + '/cgi-bin/mmwebwx-bin/webwxinit'
   conf.API_webwxgetcontact = origin + '/cgi-bin/mmwebwx-bin/webwxgetcontact'

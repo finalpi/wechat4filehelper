@@ -89,12 +89,12 @@ bot.on('login', () => {
   /**
    * 通过表情MD5发送表情
    */
-  bot.sendMsg({
-    emoticonMd5: '00c801cdf69127550d93ca52c3f853ff'
-  }, ToUserName)
-    .catch(err => {
-      bot.emit('error', err)
-    })
+  // bot.sendMsg({
+  //   emoticonMd5: '00c801cdf69127550d93ca52c3f853ff'
+  // }, ToUserName)
+  //   .catch(err => {
+  //     bot.emit('error', err)
+  //   })
 
   /**
    * 以下通过上传文件发送图片，视频，附件等
@@ -113,17 +113,17 @@ bot.on('login', () => {
   /**
    * 发送图片
    */
-  bot.sendMsg({
-    file: request('https://raw.githubusercontent.com/nodeWechat/wechat4u/master/bot-qrcode.jpg'),
-    filename: 'bot-qrcode.jpg'
-  }, ToUserName)
-    .catch(err => {
-      bot.emit('error', err)
-    })
-
-  /**
-   * 发送表情
-   */
+  // bot.sendMsg({
+  //   file: request('https://raw.githubusercontent.com/nodeWechat/wechat4u/master/bot-qrcode.jpg'),
+  //   filename: 'bot-qrcode.jpg'
+  // }, ToUserName)
+  //   .catch(err => {
+  //     bot.emit('error', err)
+  //   })
+  //
+  // /**
+  //  * 发送表情
+  //  */
   bot.sendMsg({
     file: fs.createReadStream('./media/test.gif'),
     filename: 'test.gif'
@@ -131,40 +131,40 @@ bot.on('login', () => {
     .catch(err => {
       bot.emit('error', err)
     })
-
-  /**
-   * 发送视频
-   */
-  bot.sendMsg({
-    file: fs.createReadStream('./media/test.mp4'),
-    filename: 'test.mp4'
-  }, ToUserName)
-    .catch(err => {
-      bot.emit('error', err)
-    })
-
-  /**
-   * 发送文件
-   */
-  bot.sendMsg({
-    file: fs.createReadStream('./media/test.txt'),
-    filename: 'test.txt'
-  }, ToUserName)
-    .catch(err => {
-      bot.emit('error', err)
-    })
-
-  /**
-   * 发送撤回消息请求
-   */
-  bot.sendMsg('测试撤回', ToUserName)
-     .then(res => {
-       // 需要取得待撤回消息的MsgID
-       return bot.revokeMsg(res.MsgID, ToUserName)
-     })
-     .catch(err => {
-       console.log(err)
-     })
+  //
+  // /**
+  //  * 发送视频
+  //  */
+  // bot.sendMsg({
+  //   file: fs.createReadStream('./media/test.mp4'),
+  //   filename: 'test.mp4'
+  // }, ToUserName)
+  //   .catch(err => {
+  //     bot.emit('error', err)
+  //   })
+  //
+  // /**
+  //  * 发送文件
+  //  */
+  // bot.sendMsg({
+  //   file: fs.createReadStream('./media/test.txt'),
+  //   filename: 'test.txt'
+  // }, ToUserName)
+  //   .catch(err => {
+  //     bot.emit('error', err)
+  //   })
+  //
+  // /**
+  //  * 发送撤回消息请求
+  //  */
+  // bot.sendMsg('测试撤回', ToUserName)
+  //    .then(res => {
+  //      // 需要取得待撤回消息的MsgID
+  //      return bot.revokeMsg(res.MsgID, ToUserName)
+  //    })
+  //    .catch(err => {
+  //      console.log(err)
+  //    })
 })
 /**
  * 如何处理会话消息
