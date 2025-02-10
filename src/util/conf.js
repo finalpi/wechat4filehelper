@@ -171,12 +171,18 @@ export const CONF = {
 export function getCONF (host, originUrl) {
   host = host || 'wx.qq.com'
   let origin = 'https://filehelper.weixin.qq.com'
+  let fileUrl = 'file.wx.qq.com'
   if (originUrl) {
     origin = originUrl
+    fileUrl = 'file.wx2.qq.com'
   }
   let loginUrl = 'login.wx.qq.com'
   let matchResult
   if (host) {
+    if (host === 'szfilehelper.weixin.qq.com') {
+      fileUrl = 'file.wx2.qq.com'
+      origin = 'https://szfilehelper.weixin.qq.com'
+    }
     matchResult = host.match(/(\w+)(.qq.com|.wechat.com)/)
     if (matchResult && matchResult[1] && matchResult[2]) {
       let prefix = matchResult[1]
@@ -186,6 +192,7 @@ export function getCONF (host, originUrl) {
       } else {
         prefix = ~['web', 'web2'].indexOf(prefix) ? prefix : 'web'
       }
+      // fileUrl = `file.${prefix}${suffix}`
       loginUrl = `login.${prefix}${suffix}`
     }
   }
@@ -195,7 +202,7 @@ export function getCONF (host, originUrl) {
   conf.API_jsLogin = 'https://' + loginUrl + '/jslogin?appid=wx_webfilehelper&fun=new&lang=zh-CN&redirect_uri=https%253A%252F%252Ffilehelper.weixin.qq.com%252Fcgi-bin%252Fmmwebwx-bin%252Fwebwxnewloginpage'
   conf.API_login = 'https://' + loginUrl + '/cgi-bin/mmwebwx-bin/login'
   conf.API_synccheck = origin + '/cgi-bin/mmwebwx-bin/synccheck'
-  conf.API_webwxdownloadmedia = 'https://filehelper.weixin.qq.com' + '/cgi-bin/mmwebwx-bin/webwxgetmedia'
+  conf.API_webwxdownloadmedia = 'https://' + fileUrl + '/cgi-bin/mmwebwx-bin/webwxgetmedia'
   conf.API_webwxuploadmedia = origin + '/cgi-bin/mmwebwx-bin/webwxuploadmedia'
   conf.API_webwxpreview = origin + '/cgi-bin/mmwebwx-bin/webwxpreview'
   conf.API_webwxinit = origin + '/cgi-bin/mmwebwx-bin/webwxinit'

@@ -1048,10 +1048,12 @@ export default class WechatCore {
       let params = {
         sender: FromUserName,
         mediaid: MediaId,
-        filename: FileName,
-        fromuser: this.user.UserName,
+        encryfilename: FileName,
+        sid: this.PROP.sid,
+        fromuser: this.PROP.uin,
         pass_ticket: this.PROP.passTicket,
-        webwx_data_ticket: this.PROP.webwxDataTicket
+        webwx_data_ticket: this.PROP.webwxDataTicket,
+        mmweb_appid: 'wx_webfilehelper'
       }
       return this.request({
         method: 'GET',
