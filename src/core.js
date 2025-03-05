@@ -169,7 +169,7 @@ export default class WechatCore {
     })
   }
 
-  init () {
+  init (retryCount = 3) {
     return Promise.resolve().then(() => {
       let t = Date.now()
       let r = t / -1579
@@ -198,9 +198,12 @@ export default class WechatCore {
       })
     }).catch(err => {
       debug(err)
-      err.tips = '微信初始化失败'
-      this.CONF = getCONF(undefined, 'https://szfilehelper.weixin.qq.com')
-      return this.init()
+      if (retryCount > 0) {
+        this.CONF = getCONF(undefined, 'https://szfilehelper.weixin.qq.com')
+        return this.init(retryCount - 1) // 限制最大重试次数
+      } else {
+        throw new Error('微信初始化失败，已达到最大重试次数')
+      }
     })
   }
 
