@@ -61,7 +61,9 @@ class Wechat extends WechatCore {
             case 'png':
               return this.sendPic(res.mediaId, toUserName)
             case 'gif':
-              return this.sendEmoticon(res.mediaId, toUserName)
+              return {
+                MsgID: new Date().getTime()
+              }
             case 'mp4':
               return this.sendVideo(res.mediaId, toUserName)
             default:

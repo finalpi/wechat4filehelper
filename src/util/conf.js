@@ -203,7 +203,7 @@ export function getCONF (host, originUrl) {
   conf.API_login = 'https://' + loginUrl + '/cgi-bin/mmwebwx-bin/login'
   conf.API_synccheck = origin + '/cgi-bin/mmwebwx-bin/synccheck'
   conf.API_webwxdownloadmedia = 'https://' + fileUrl + '/cgi-bin/mmwebwx-bin/webwxgetmedia'
-  conf.API_webwxuploadmedia = origin + '/cgi-bin/mmwebwx-bin/webwxuploadmedia'
+  conf.API_webwxuploadmedia = 'https://' + fileUrl + '/cgi-bin/mmwebwx-bin/webwxuploadmedia'
   conf.API_webwxpreview = origin + '/cgi-bin/mmwebwx-bin/webwxpreview'
   conf.API_webwxinit = origin + '/cgi-bin/mmwebwx-bin/webwxinit'
   conf.API_webwxgetcontact = origin + '/cgi-bin/mmwebwx-bin/webwxgetcontact'
